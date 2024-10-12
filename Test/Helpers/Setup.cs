@@ -34,6 +34,7 @@ public static void ClassInit(TestContext testContext)
             {
 
                 Services.AddScoped<IAdministradorServico, AdministradorServicoMocks>();
+                Services.AddScoped<IVeiculoServico, VeiculoServicoMock>();
 
 
             });

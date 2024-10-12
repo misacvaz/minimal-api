@@ -71,7 +71,38 @@ namespace MinimalApi.Dominio.Entidades;
             Assert.AreEqual(adm.Id, admDoBanco?.Id);
         }
 
-        
+    public void TestandoTodosAdministradores()
+    {
+        // Arrange
+        var context = CriarContextoDeTeste();
+        context.Database.ExecuteSqlRaw("TRUNCATE TABLE Administradores");
+        var adm = new Administrador
+        {
+            Email = "test@gmail.com",
+            Senha = "123456",
+            Perfil = "Adm"
+        };
+
+        var adm1 = new Administrador
+        {
+            
+            Email = "editor@test.com",
+            Senha = "123456",
+            Perfil = "editor"
+        };
+
+        var administradorServico = new AdministradorServico(context);
+
+        // Act
+        administradorServico.Incluir(adm);
+        administradorServico.Incluir(adm1);
+        var administradores = administradorServico.Todos(1); // Testa a obtenção de todos os administradores
+
+        // Assert
+        Assert.AreEqual(2, administradores.Count());
+    }
+
+
 
 }
 

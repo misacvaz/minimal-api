@@ -50,4 +50,35 @@ public class AdministradorServicoMocks : IAdministradorServico
     {
         return administradores;
     }
+
+
+    //para atualizar administrador
+
+    public Administrador? Atualizar(Administrador administrador)
+    {
+        var adminExistente = BuscaPorId(administrador.Id);
+        if(adminExistente != null)
+        {
+            adminExistente.Email = adminExistente.Email;
+            adminExistente.Senha = adminExistente.Senha;
+            adminExistente.Perfil = adminExistente.Perfil;
+
+            return adminExistente;
+
+        }
+
+        return null;
+    }
+
+
+     /*public bool Apagar(int id)
+     {
+        var administrador = BuscaPorId(id);
+        if(administrador != null)
+        {
+            administradores.Remove(administrador);
+            return true;
+        }
+        return false;
+     }*/
 }
